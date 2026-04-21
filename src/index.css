@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+:root {
+  --bg: #0d0d12;
+  --card-bg: #1a1a24;
+  --accent-orange: #ff5f1f;
+  --accent-blue: #00d2ff;
+  --accent-gold: #d4af37;
+  --crane-yellow: #fcd34d;
+  --text-main: #f0f0f2;
+  --text-dim: #8a8a98;
+  --border: #333344;
+  --voxel-shadow: #000000;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  image-rendering: pixelated;
+}
+
+/* Voxel Style Bento Card */
+.bento-card {
+  background: var(--card-bg);
+  border: 4px solid var(--voxel-shadow);
+  border-radius: 0px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    4px 4px 0px 0px var(--voxel-shadow),
+    inset -4px -4px 0px 0px rgba(0,0,0,0.2),
+    inset 4px 4px 0px 0px rgba(255,255,255,0.05);
+  transition: all 0.2s steps(4);
+}
+
+.bento-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 4px 4px;
+  pointer-events: none;
+}
+
+.label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-blue);
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-weight: bold;
+}
+
+.hero-professional {
+  background: #1e1e2a;
+  box-shadow: 
+    4px 4px 0px 0px var(--voxel-shadow),
+    inset 0px 4px 0px 0px var(--accent-orange);
+}
+
+.text-stroke {
+  -webkit-text-stroke: 2px var(--accent-blue);
+  color: transparent;
+  text-shadow: 4px 4px 0px var(--voxel-shadow);
+}
+
+/* Voxel Scanner Effect */
+.scanner-voxel {
+  border: 8px solid var(--accent-orange);
+  box-shadow: 0 0 0 8px var(--voxel-shadow), 0 0 40px rgba(255, 95, 31, 0.3);
+  background: rgba(255, 95, 31, 0.1);
+  image-rendering: pixelated;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
