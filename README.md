@@ -1,20 +1,44 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Hassan S. | Data Science & Safety Innovation
 
-# Run and deploy your AI Studio app
+A modern, industrial-themed portfolio showcasing the intersection of Occupational Health & Safety (OHS) expertise and advanced Data Science.
 
-This contains everything you need to run your app locally.
+## Overview
 
-View your app in AI Studio: https://ai.studio/apps/9e08303c-c2f7-4865-a571-2e9580fd8225
+This portfolio leverages a unique "Factory/Assembly Line" interactive metaphor to present a career built on over 10 years of industrial safety experience and high-level analytical skills. It highlights key milestones in construction, infrastructure safety, and data-driven harm prevention.
 
-## Run Locally
+## Tech Stack
 
-**Prerequisites:**  Node.js
+- **Framework:** React 19
+- **Animations:** Motion
+- **Styling:** Tailwind CSS 4.0
+- **Icons:** Lucide React
+- **Build Tool:** Vite 6
+- **Deployment:** GitHub Pages
 
+## Project Highlights
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- **Education:** Master of Data Science and specialized B.A.Sc. in OHS.
+- **Applied Research:** Projects in microbial fuel cells, MR fluids, and smart safety devices.
+- **Honors:** Multiple national and international awards for science and social innovation.
+
+## Installation & Local Development
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/HS-devo/HS-Portfolio.git
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Run development server:**
+   ```bash
+   npm run dev
+   ```
+
+## Deployment
+
+The site is configured for automated deployment to GitHub Pages via GitHub Actions. Pushing to the `main` branch will trigger a fresh build and release cycle.
+
+---
+© 2026 Hassan S.

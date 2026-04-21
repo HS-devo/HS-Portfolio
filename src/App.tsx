@@ -1,34 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import {
-  ShieldCheck,
-  Database,
-  Globe,
-  Gamepad2,
-  Terminal,
-  Moon,
-  FlaskConical,
-  Wrench,
-  MapPin,
-  Code2,
+  GraduationCap,
+  Cpu,
+  Trophy,
+  Linkedin,
+  Github,
   ChevronRight,
   ChevronLeft,
   Play,
   Pause,
-  Settings,
-  GraduationCap,
-  BookOpen,
-  Zap,
-  Beaker,
-  Cpu,
-  Trophy,
-  Award,
-  Medal,
-  Linkedin,
-  Github,
-  Heart
 } from 'lucide-react';
 
+/**
+ * Portfolio Data Structure
+ * Defines the core experience items shown in the conveyor belt.
+ */
 const portfolioItems = [
   {
     id: 'education',
@@ -80,77 +67,20 @@ const portfolioItems = [
     ),
     bgElement: <div className="absolute -bottom-10 -right-10 opacity-10"><Trophy size={150} /></div>
   }
-  /* Temporarily disabled cards:
-  ,
-  {
-    id: 'travel',
-    title: 'Travel',
-    label: 'Wanderlust',
-    icon: Globe,
-    iconColor: 'var(--accent-orange)',
-    className: 'border-t-4 border-t-[var(--accent-orange)]',
-    content: 'Exploring the world, experiencing new cultures, and broadening perspectives. Recently: Karakoram Highway.',
-    bgElement: <div className="absolute -bottom-10 -right-10 opacity-10"><Globe size={150} /></div>
-  },
-  {
-    id: 'gaming',
-    title: 'Video Games',
-    label: 'Gaming',
-    icon: Gamepad2,
-    iconColor: 'var(--accent-blue)',
-    className: 'border-t-4 border-t-[var(--accent-blue)]',
-    content: 'Interactive storytelling and strategic problem solving. Current Session: Elite Dangerous / Satisfactory.',
-    bgElement: <div className="absolute -bottom-10 -right-10 opacity-10"><Gamepad2 size={150} /></div>
-  },
-  {
-    id: 'coding',
-    title: 'Coding',
-    label: 'Vibe Coding',
-    icon: Terminal,
-    iconColor: 'var(--accent-orange)',
-    className: 'border-t-4 border-t-[var(--accent-orange)]',
-    content: 'Building software by feeling the rhythm of the logic. Experimenting with AI agents and modern web tech.',
-    bgElement: <div className="absolute -bottom-10 -right-10 opacity-10"><Terminal size={150} /></div>
-  },
-  {
-    id: 'volunteering',
-    title: 'Volunteering',
-    label: 'Community',
-    icon: Heart,
-    iconColor: 'var(--accent-blue)',
-    className: 'border-t-4 border-t-[var(--accent-blue)]',
-    content: 'Deeply committed to community development and health-focused charitable work.',
-    bgElement: <div className="absolute -bottom-10 -right-10 opacity-10"><Heart size={150} /></div>
-  },
-  {
-    id: 'science',
-    title: 'Science',
-    label: 'Experiments',
-    icon: FlaskConical,
-    iconColor: 'var(--accent-orange)',
-    className: 'border-t-4 border-t-[var(--accent-orange)]',
-    content: 'Hands-on experimentation and scientific inquiry. Exploring the physical world through empirical testing.',
-    bgElement: <div className="absolute -bottom-10 -right-10 opacity-10"><FlaskConical size={150} /></div>
-  },
-  {
-    id: 'diy',
-    title: 'DIY',
-    label: 'Maker',
-    icon: Wrench,
-    iconColor: 'var(--accent-blue)',
-    className: 'border-t-4 border-t-[var(--accent-blue)]',
-    content: 'Building custom IoT air quality sensors, water electrolysis rigs, and hands-on engineering projects.',
-    bgElement: <div className="absolute -bottom-10 -right-10 opacity-10"><Wrench size={150} /></div>
-  }
-  */
 ];
 
+// Multiply items for the infinite-feeling loop
 const conveyorItems = Array(10).fill(portfolioItems).flat();
 
+/**
+ * FactoryBackground Component
+ * Renders an interactive, industrial-themed SVG background.
+ * Optimized for responsiveness using 'meet' aspect ratio.
+ */
 const FactoryBackground = () => {
   return (
     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden flex items-center justify-center opacity-40">
-      <svg viewBox="0 0 1200 800" className="w-full h-full min-w-[1200px]" preserveAspectRatio="xMidYMid slice">
+      <svg viewBox="0 0 1200 800" className="w-full h-full max-w-full" preserveAspectRatio="xMidYMid meet">
         {/* Voxel Grid Floor */}
         <g opacity="0.03">
           {Array.from({length: 60}).map((_, i) => (
@@ -161,24 +91,18 @@ const FactoryBackground = () => {
           ))}
         </g>
 
-        {/* TOP ASSEMBLY LINE (Above Bento) */}
+        {/* TOP ASSEMBLY LINE */}
         <g transform="translate(0, 50)">
-          {/* Conveyor Rail */}
           <rect width="1200" height="10" fill="#222" stroke="black" strokeWidth="2" />
-          
-          {/* Robot Assembly Stations */}
           {[100, 300, 500, 700, 900, 1100].map((x, i) => (
             <g key={`station-top-${i}`} transform={`translate(${x}, 0)`}>
-              {/* Station Base */}
               <rect x="-40" y="0" width="80" height="40" fill="#2a2a3a" stroke="black" strokeWidth="2" />
-              {/* Robot Arm (Top-down) */}
               <g transform="translate(0, 40)">
                 <rect x="-5" y="0" width="10" height="30" fill="#555" stroke="black" strokeWidth="1">
                   <animateTransform attributeName="transform" type="rotate" values="-20;20;-20" dur={`${3+i}s`} repeatCount="indefinite" />
                 </rect>
                 <rect x="-15" y="30" width="30" height="10" fill="var(--accent-blue)" stroke="black" strokeWidth="1" />
               </g>
-              {/* Spark Effect */}
               <circle r="2" fill="white">
                 <animate attributeName="opacity" values="0;1;0" dur="0.2s" repeatCount="indefinite" begin={`${i*0.5}s`} />
                 <animate attributeName="cy" values="70;75" dur="0.2s" repeatCount="indefinite" />
@@ -188,107 +112,52 @@ const FactoryBackground = () => {
           ))}
         </g>
 
-        {/* BOTTOM ASSEMBLY LINE (Below Bento) */}
+        {/* BOTTOM ASSEMBLY LINE */}
         <g transform="translate(0, 650)">
-          {/* Heavy Duty Rail */}
           <rect width="1200" height="15" fill="#1a1a1a" stroke="black" strokeWidth="2" />
-          
-          {/* Moving Robot Chassis */}
           {Array.from({length: 8}).map((_, i) => (
             <motion.g
               key={`chassis-${i}`}
               animate={{ x: [-100, 1300] }}
               transition={{ duration: 25, repeat: Infinity, ease: "linear", delay: i * 4 }}
             >
-              {/* Robot Base */}
               <rect width="60" height="30" fill="#333" stroke="black" strokeWidth="2" />
               <rect x="10" y="-10" width="40" height="10" fill="var(--accent-orange)" opacity="0.6" />
-              {/* Wheels */}
               <circle cx="15" cy="30" r="5" fill="black" />
               <circle cx="45" cy="30" r="5" fill="black" />
             </motion.g>
           ))}
-
-          {/* Welding Robots (Bottom) */}
-          {[200, 450, 700, 950].map((x, i) => (
-            <g key={`welder-bot-${i}`} transform={`translate(${x}, 0)`}>
-              <rect x="-20" y="15" width="40" height="60" fill="#2a2a3a" stroke="black" strokeWidth="3" />
-              {/* 3D Top */}
-              <path d="M -20 15 L 0 -5 L 40 -5 L 20 15 Z" fill="#3a3a4a" stroke="black" strokeWidth="2" />
-              {/* Arm */}
-              <g transform="translate(0, 15)">
-                <rect x="-5" y="-40" width="10" height="40" fill="#555" stroke="black" strokeWidth="1">
-                  <animateTransform attributeName="transform" type="rotate" values="0;-45;0" dur="4s" repeatCount="indefinite" />
-                </rect>
-              </g>
-            </g>
-          ))}
         </g>
 
-        {/* SIDE EQUIPMENT (Concentrated & Detailed) */}
+        {/* SIDE CONSOLES */}
         <g transform="translate(40, 180)">
-          {/* Main Console */}
           <rect width="100" height="160" fill="#1e1e2a" stroke="black" strokeWidth="4" />
           <path d="M 0 0 L 20 -20 L 120 -20 L 100 0 Z" fill="#2e2e3a" stroke="black" strokeWidth="2" />
           <path d="M 100 0 L 120 -20 L 120 140 L 100 160 Z" fill="#0e0e1a" stroke="black" strokeWidth="2" />
-          
-          {/* Screen */}
           <rect x="10" y="10" width="80" height="40" fill="#000" stroke="#333" strokeWidth="2" />
           <rect x="15" y="15" width="70" height="30" fill="var(--accent-blue)" opacity="0.2">
             <animate attributeName="opacity" values="0.1;0.3;0.1" dur="3s" repeatCount="indefinite" />
           </rect>
-          
-          {/* Blinking Lights */}
           {[0, 1, 2].map(i => (
             <circle key={`light-l-${i}`} cx={20 + i*30} cy="65" r="4" fill={i === 0 ? 'var(--accent-orange)' : 'var(--accent-blue)'}>
               <animate attributeName="opacity" values="1;0.2;1" dur={`${1 + i*0.5}s`} repeatCount="indefinite" />
             </circle>
           ))}
-
-          {/* Vents */}
-          <g transform="translate(10, 85)">
-            {[0, 1, 2, 3].map(i => (
-              <rect key={`vent-l-${i}`} y={i*12} width="80" height="4" fill="#111" />
-            ))}
-            {/* Steam/Smoke effect */}
-            <rect x="20" y="-20" width="40" height="20" fill="white" opacity="0">
-              <animate attributeName="opacity" values="0;0.2;0" dur="4s" repeatCount="indefinite" />
-              <animate attributeName="y" values="-20;-60" dur="4s" repeatCount="indefinite" />
-            </rect>
-          </g>
-          
           <text x="10" y="145" fill="var(--accent-blue)" fontSize="8" fontFamily="monospace" fontWeight="bold">SYS_L_ACTIVE</text>
         </g>
 
         <g transform="translate(1060, 180)">
-          {/* Secondary Console */}
           <rect width="100" height="160" fill="#1e1e2a" stroke="black" strokeWidth="4" />
           <path d="M 0 0 L 20 -20 L 120 -20 L 100 0 Z" fill="#2e2e3a" stroke="black" strokeWidth="2" />
           <path d="M 100 0 L 120 -20 L 120 140 L 100 160 Z" fill="#0e0e1a" stroke="black" strokeWidth="2" />
-
-          {/* Pipes */}
-          <g transform="translate(-20, 40)">
-            <rect width="20" height="80" fill="#444" stroke="black" strokeWidth="2" />
-            <rect x="5" y="10" width="10" height="60" fill="#333" />
-          </g>
-
-          {/* Gauges */}
           <circle cx="50" cy="40" r="25" fill="#111" stroke="#333" strokeWidth="2" />
           <line x1="50" y1="40" x2="50" y2="20" stroke="var(--accent-orange)" strokeWidth="2">
             <animateTransform attributeName="transform" type="rotate" from="0 50 40" to="180 50 40" dur="5s" repeatCount="indefinite" />
           </line>
-
-          {/* Buttons */}
-          <g transform="translate(15, 80)">
-            {[0, 1, 2, 3].map(i => (
-              <rect key={`btn-${i}`} x={(i%2)*40} y={Math.floor(i/2)*30} width="30" height="20" fill="#333" stroke="black" strokeWidth="2" />
-            ))}
-          </g>
-
           <text x="10" y="145" fill="var(--accent-orange)" fontSize="8" fontFamily="monospace" fontWeight="bold">SYS_R_SYNC</text>
         </g>
 
-        {/* DATA FLOW (Scattered in clear areas) */}
+        {/* DATA FLOW DECORATIONS */}
         <g opacity="0.3">
           {[150, 400, 650, 900].map((x, i) => (
             <rect key={`v-data-${i}`} x={x} width="2" height="150" fill="var(--accent-blue)">
@@ -302,41 +171,46 @@ const FactoryBackground = () => {
 };
 
 export default function App() {
+  // State management for the interactive conveyor belt
   const [activeIndex, setActiveIndex] = useState(16);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
 
+  // Sync window width for responsive calculation
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Handle expansion after movement
+  // Handle automatic expansion and track movement timing
   useEffect(() => {
     setIsExpanded(false);
     const expandTimeout = setTimeout(() => {
       setIsExpanded(true);
-    }, 800); // Wait for track to finish moving
+    }, 800);
     return () => clearTimeout(expandTimeout);
   }, [activeIndex]);
 
-  // Handle auto-play
+  // Handle auto-play cycle
   useEffect(() => {
     let nextTimeout: ReturnType<typeof setTimeout>;
     if (isAutoPlaying && isExpanded) {
-      // Once expanded, wait a bit then move to next
       nextTimeout = setTimeout(() => {
         setIsExpanded(false);
         setTimeout(() => {
           setActiveIndex(prev => (prev + 1) % conveyorItems.length);
-        }, 500); // Wait for shrink before moving
+        }, 500);
       }, 3500);
     }
     return () => clearTimeout(nextTimeout);
   }, [isExpanded, isAutoPlaying]);
 
+  /**
+   * Safe Index Change Handler
+   * Prevents layout flickering by collapsing before moving.
+   */
   const changeIndex = (delta: number) => {
     setIsAutoPlaying(false);
     if (isExpanded) {
@@ -357,20 +231,18 @@ export default function App() {
     }
   };
 
+  // Layout calculations for the "Scanner" experience
   const isMobile = windowWidth < 768;
   const expandedWidth = Math.min(windowWidth - 48, 500);
   const expandedHeight = isMobile ? 420 : 560;
   const scannerWidth = Math.min(windowWidth - 32, 380);
   const scannerHeight = isMobile ? 320 : 440;
 
-  const { scrollY } = useScroll();
-  const tickerRef = React.useRef<HTMLDivElement>(null);
-
   const trackX = (windowWidth / 2) - (activeIndex * 232 + (isExpanded ? expandedWidth / 2 : 100));
 
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text-main)] selection:bg-[var(--accent-orange)] selection:text-black overflow-x-hidden">
-      {/* Fixed Header (Navigation) */}
+      {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-[120] h-16 flex items-center justify-between px-6 md:px-12 pointer-events-none">
         <div className="flex items-center gap-4 pointer-events-auto">
           <div className="h-10 px-3 bg-black text-[var(--crane-yellow)] border-4 border-[var(--voxel-shadow)] flex items-center justify-center font-bold shadow-[4px_4px_0px_0px_var(--voxel-shadow)] whitespace-nowrap">Hassan S</div>
@@ -379,6 +251,7 @@ export default function App() {
         <div className="flex gap-6 text-sm font-mono uppercase tracking-widest pointer-events-auto bg-black/60 backdrop-blur-sm px-4 py-2 border border-white/10">
           <a href="#about" className="hover:text-[var(--accent-orange)] transition-colors">About</a>
           <a href="#portfolio" className="hover:text-[var(--accent-orange)] transition-colors">Portfolio</a>
+          <a href="#contact" className="hover:text-[var(--accent-orange)] transition-colors">Contact</a>
         </div>
       </nav>
 
@@ -386,11 +259,11 @@ export default function App() {
       <header className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-20 pb-12 relative overflow-hidden" id="about">
         <div className="max-w-7xl mx-auto w-full z-10">
           <motion.div 
-            initial={{ y: 100, opacity: 0 }}
+            initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8 }}
           >
-            <h1 className="font-bold text-[14vw] md:text-[10vw] leading-[0.85] uppercase tracking-tight mb-6">
+            <h1 className="font-bold text-[10vw] md:text-[8vw] leading-[0.85] uppercase tracking-tight mb-6">
               Data Science <br />
               <span className="text-[var(--crane-yellow)] drop-shadow-md" style={{ textShadow: '4px 4px 0px var(--voxel-shadow)' }}>& Safety</span> <br />
               Innovation
@@ -400,7 +273,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
+            transition={{ delay: 0.5 }}
             className="mt-12 border-t border-[var(--border)] pt-8"
           >
             <h2 className="text-xl md:text-2xl text-[var(--accent-orange)] font-medium max-w-3xl leading-snug">
@@ -411,14 +284,14 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 1 }}
+            transition={{ delay: 0.7 }}
             className="mt-16 max-w-4xl text-[var(--text-dim)] text-lg leading-relaxed space-y-6"
           >
             <p>
               I help workplaces solve complex safety challenges through a strategic blend of domain expertise, technical acumen, and forward-thinking vision.
             </p>
             <p>
-              My background spans the full spectrum of occupational health and safety. With over a decade of experience in construction—including bridge, rail, tunneling, high-rise, and utilities—I specialize in inspections, regulatory investigations, policy reviews, risk assessments, and evaluating safety systems.
+              My background spans the full spectrum of occupational health and safety. With over a decade of experience in construction—including bridge, rail, tunneling, high-rise, and utilities—I specialize in investigations, policy reviews, risk assessments, and evaluating safety systems.
             </p>
             <p>
               I believe the future of workplace safety lies at the intersection of domain expertise and emerging technology. Currently, I am focused on how innovations in autonomous systems, digital simulation, and predictive analytics can revolutionize harm prevention and operational excellence.
@@ -426,26 +299,15 @@ export default function App() {
             <p>
               Beyond my professional life, I am deeply committed to community development and health-focused charitable work. I am always open to discussing the evolution of OHS, data-driven innovations, or potential collaborations. Let's connect.
             </p>
-            
-            <div className="flex flex-wrap gap-4 pt-6">
-              <a href="https://www.linkedin.com/in/hassanonline" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 bg-[var(--card-bg)] border-4 border-[var(--voxel-shadow)] shadow-[4px_4px_0px_0px_var(--voxel-shadow)] hover:bg-[var(--accent-blue)] hover:text-black transition-colors">
-                <Linkedin size={20} />
-                <span className="font-mono text-xs uppercase tracking-wider">LinkedIn</span>
-              </a>
-              <a href="https://github.com/HS-devo" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 bg-[var(--card-bg)] border-4 border-[var(--voxel-shadow)] shadow-[4px_4px_0px_0px_var(--voxel-shadow)] hover:bg-[var(--accent-orange)] hover:text-black transition-colors">
-                <Github size={20} />
-                <span className="font-mono text-xs uppercase tracking-wider">GitHub</span>
-              </a>
-            </div>
           </motion.div>
         </div>
 
-        {/* Background decorative elements */}
+        {/* Decorative Ambience */}
         <div className="absolute top-1/4 right-10 w-96 h-96 bg-[var(--accent-orange)]/5 rounded-full blur-[100px] -z-0 pointer-events-none"></div>
       </header>
 
-      {/* Marquee */}
-      <div ref={tickerRef} className="py-4 border-y border-[var(--border)] overflow-hidden bg-white/5 relative">
+      {/* Marquee Ticker */}
+      <div className="py-4 border-y border-[var(--border)] overflow-hidden bg-white/5 relative">
         <div className="marquee-track font-mono text-sm uppercase tracking-widest flex gap-8 items-center">
           {[...Array(2)].map((_, i) => (
             <React.Fragment key={i}>
@@ -460,8 +322,8 @@ export default function App() {
         </div>
       </div>
 
-      {/* Conveyor Belt Section */}
-      <section id="portfolio" className="py-24 relative overflow-hidden bg-[var(--bg)] min-h-[800px] flex flex-col justify-center">
+      {/* Experience Pipeline Section */}
+      <section id="portfolio" className="py-24 relative overflow-hidden bg-[var(--bg)] min-h-[800px] flex flex-col justify-center border-b border-[var(--border)]">
         <FactoryBackground />
         
         <div className="text-center mb-16 relative z-30">
@@ -469,7 +331,6 @@ export default function App() {
           <p className="text-[var(--text-dim)] font-mono text-sm">Processing multifaceted experience...</p>
         </div>
 
-        {/* Conveyor Belt Container */}
         <div className="relative w-full h-[600px] flex items-center z-20">
           {/* Scanner Overlay */}
           <motion.div 
@@ -488,15 +349,11 @@ export default function App() {
             />
           </motion.div>
 
-          {/* Track */}
+          {/* Experience Track */}
           <motion.div
             className="flex gap-8 absolute left-0 items-center cursor-grab active:cursor-grabbing"
             animate={{ x: trackX }}
             transition={{ type: "spring", stiffness: 150, damping: 20 }}
-            onPanEnd={(e, info) => {
-              if (info.offset.x < -50) changeIndex(1);
-              else if (info.offset.x > 50) changeIndex(-1);
-            }}
           >
             {conveyorItems.map((item, index) => {
               const isActive = index === activeIndex;
@@ -536,9 +393,9 @@ export default function App() {
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.1 } }}
-                        transition={{ delay: 0.6, duration: 0.3, ease: "easeOut" }}
-                        className={`mt-2 flex-1 text-[#f5f5fa] bg-black/50 p-4 rounded backdrop-blur-sm border border-white/5 font-sans ${isMobile ? 'text-sm' : 'text-base'} font-medium leading-relaxed relative z-10 overflow-y-auto scrollbar-thin pr-2 shadow-inner`}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ delay: 0.6 }}
+                        className={`mt-2 flex-1 text-[#f5f5fa] bg-black/50 p-4 rounded backdrop-blur-sm border border-white/5 font-sans ${isMobile ? 'text-sm' : 'text-base'} font-medium leading-relaxed relative z-10 overflow-y-auto scrollbar-thin pr-2`}
                       >
                         {item.content}
                       </motion.div>
@@ -551,7 +408,7 @@ export default function App() {
           </motion.div>
         </div>
 
-        {/* Controls */}
+        {/* Playback Controls */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-6 z-40">
           <button 
             onClick={() => changeIndex(-1)}
@@ -573,6 +430,24 @@ export default function App() {
           >
             <ChevronRight />
           </button>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 px-6 md:px-12 relative bg-[var(--bg)]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="max-w-2xl">
+            <h2 className="font-bold text-5xl md:text-7xl uppercase mb-8 leading-none">Get in <br /><span className="text-[var(--accent-orange)]">Touch</span></h2>
+            <p className="text-[var(--text-dim)] text-xl leading-relaxed mb-8 font-medium">Open to discussing the evolution of OHS, data-driven innovations, or potential technical collaborations.</p>
+            <div className="flex flex-wrap gap-4">
+              <a href="https://www.linkedin.com/in/hassanonline" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-8 py-4 bg-black text-white border-4 border-[var(--voxel-shadow)] shadow-[6px_6px_0px_var(--voxel-shadow)] hover:bg-[var(--accent-blue)] hover:text-black transition-all hover:-translate-y-1 active:translate-y-0 active:shadow-none font-bold uppercase tracking-wider">
+                <Linkedin size={20} /> LinkedIn
+              </a>
+              <a href="https://github.com/HS-devo" target="_blank" rel="noreferrer" className="flex items-center gap-3 px-8 py-4 bg-black text-white border-4 border-[var(--voxel-shadow)] shadow-[6px_6px_0px_var(--voxel-shadow)] hover:bg-[var(--accent-orange)] hover:text-black transition-all hover:-translate-y-1 active:translate-y-0 active:shadow-none font-bold uppercase tracking-wider">
+                <Github size={20} /> GitHub
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
