@@ -14,7 +14,7 @@ import {
 
 /**
  * Portfolio Data Structure
- * Defines the core experience items shown in the conveyor belt.
+ * Deployment Trigger: 2026-04-21
  */
 const portfolioItems = [
   {
